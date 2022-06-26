@@ -20,7 +20,6 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-        private CaptureFileWriterDevice captureFileWriter = null;
         private LibPcapLiveDeviceList devices = null;
         private int packetIndex = 0;
         private int packetIndex2 = 0;
@@ -45,21 +44,22 @@ namespace WinFormsApp1
         private List<int> windurstWatersPutFishingRodAwayValues = new List<int> { 143, 144, 145, 146, 147, 148, 149, 163, 175, 179, 180, 181, 182, 183 };
         private List<int> windurstWatersOutOfBaitValues = new List<int> { 65, 66, 67, 68, 69 };
 
-        private List<int> windurstWoodsFishHookedValues = new List<int> { 313, 312, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 363, 364, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 404, 408, 409, 468, 479 };
-        private List<int> windurstWoodsPutFishingRodAwayValues = new List<int> { 148, 161, 162, 163, 164, 165, 166, 167, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 239, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 282 };
+        private List<int> windurstWoodsFishHookedValues = new List<int> { 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 312, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555 };
+        private List<int> windurstWoodsPutFishingRodAwayValues = new List<int> { 148, 161, 162, 163, 164, 165, 166, 167, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 239, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390 };
         private List<int> windurstWoodsOutOfBaitValues = new List<int> { };
 
         private List<int> saromugueChampaignFishHookedValues = new List<int> { 49, 204, 205, 208 };
         private List<int> saromugueChampaignPutFishingRodAwayValues = new List<int> { 146, 147, 159 };
         private List<int> saromugueChampaignOutOfBaitValues = new List<int> { };
-        private List<int> westRonfaureFishHookedValues = new List<int> { 205, 208, 210, 211, 212, 217, 218, 219, 223, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 276, 277, 278, 302, 319, 320, 321, 322, 323, 324, 325, 326, 328, 329, 330, 331, 332, 333, 334, 337, 345, 365, 378, 379, 380, 381, 382, 384, 385, 386, 387, 389, 406, 414, 431, 501 };
-        private List<int> westRonfaurePutFishingRodAwayValues = new List<int> { 146, 147, 148, 149, 201, 202, 203, 204, 205, 206, 207, 208, 244, 254, 256, 257, 258, 259, 261, 262, 263, 264, 292, 295, 296, 297, 313, 314, 316, 317, 318, 319, 320, 351, 389 };
+
+        private List<int> westRonfaureFishHookedValues = new List<int> { 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 441, 442, 443, 444, 445, 446, 501 };
+        private List<int> westRonfaurePutFishingRodAwayValues = new List<int> { 146, 147, 148, 149, 182, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389 };
         private List<int> westRonfaureOutOfBaitValues = new List<int> { };
 
         private List<int> fishHookedValues = null;
         private List<int> putFishingRodAwayValues = null;
         private List<int> outOfBaitValues = null;
-        private List<int> fishMessageValues = new List<int> { 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93 };
+        private List<int> fishMessageValues = new List<int> { 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93 };
         private List<int> craftMessageValues = new List<int> { 72, 73, 74, 75, 76, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94 };
         private bool logData = false;
 
@@ -75,7 +75,7 @@ namespace WinFormsApp1
         int macroDuration = 7000;
         private int count = 0;
         private Random randomNumberGenerator = new Random();
-
+        Process process = null;
         public Form1()
         {
             InitializeComponent();
@@ -162,6 +162,9 @@ namespace WinFormsApp1
                 button2.Enabled = true;
 
                 appendText("Starting bot crafting...");
+                appendText2("Starting bot crafting...");
+                //appendText("Listening on " + device.Name + " " + device.Description);
+                
                 craft = true;
 
                 var prc = Process.GetProcessesByName("wingsloader");
@@ -305,7 +308,6 @@ namespace WinFormsApp1
         private void device_OnPacketArrival(object sender, PacketCapture e)
         {
             RawCapture rawPacket = e.GetPacket();
-            captureFileWriter.Write(rawPacket);
             if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)
             {
                 Packet packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
@@ -367,8 +369,13 @@ namespace WinFormsApp1
             button5.Enabled = true;
             button6.Enabled = false;
             button1.Enabled = true;
-            textBox1.AppendText("Stopping bot crafting...");
-            textBox1.AppendText(Environment.NewLine);
+            appendText("Stopping bot crafting...");
+            appendText2("Stopping bot crafting...");
+
+            while (udpPayloadDataQueue.Count > 0)
+            {
+                udpPayloadDataQueue.Dequeue();
+            }
             craft = false;
         }
 
@@ -383,9 +390,12 @@ namespace WinFormsApp1
 
         bool fish = false;
         int equippedBaitMacroDuration = 22000;
-        int startedFishAgainMacroDuration = 12000;
-        int PlayedFishingGameMacroDuration = 5000;
-        int idleCooldown = 30000;
+        int startedFishAgainMacroDuration = 27500;
+        int PlayedFishingGameMacroDuration = 3000;
+        private int minigameCooldownAfterStartedFishing = 9000;
+        int fishAgainAfterMiniGameCooldown = 3500;
+        int idleCooldown = 35000;
+        string lastAction = "";
         private Queue<bool> startedFishAgainQueue = new Queue<bool>();
         private Queue<bool> playedFishingGameQueue = new Queue<bool>();
         private Queue<bool> idleQueue = new Queue<bool>();
@@ -405,6 +415,7 @@ namespace WinFormsApp1
                     fishHookedValues = windurstWatersFishHookedValues;
                     putFishingRodAwayValues = windurstWatersPutFishingRodAwayValues;
                     outOfBaitValues = windurstWatersOutOfBaitValues;
+                    startedFishAgainMacroDuration = 27500;
                 }
                 else if ((string)comboBox2.SelectedItem == "Windurst Woods")
                 {
@@ -423,6 +434,8 @@ namespace WinFormsApp1
                     fishHookedValues = westRonfaureFishHookedValues;
                     putFishingRodAwayValues = westRonfaurePutFishingRodAwayValues;
                     outOfBaitValues = westRonfaureOutOfBaitValues;
+                    startedFishAgainMacroDuration = 20000;
+                    minigameCooldownAfterStartedFishing = 9000;
                 }
                 else 
                 {
@@ -450,12 +463,7 @@ namespace WinFormsApp1
 
                 fish = true;
                 count = 0;
-                startedFishAgainQueue.Enqueue(true);
-                new Thread(() =>
-                {
-                    Thread.Sleep(startedFishAgainMacroDuration);
-                    startedFishAgainQueue.Dequeue();
-                }).Start();
+                lastAction = "Fish";
 
                 idleQueue.Enqueue(true);
                 new Thread(() =>
@@ -467,7 +475,24 @@ namespace WinFormsApp1
                 ProcessStartInfo processStartInfo = new ProcessStartInfo(fishArgs);
                 processStartInfo.Verb = "runas";
                 processStartInfo.UseShellExecute = true;
-                Process.Start(processStartInfo);
+                process = Process.Start(processStartInfo);
+                process.WaitForExit();
+                process = null;
+                appendText("Process finished: ThrowFishingLine.exe...");
+
+                startedFishAgainQueue.Enqueue(true);
+                new Thread(() =>
+                {
+                    Thread.Sleep(startedFishAgainMacroDuration);
+                    startedFishAgainQueue.Dequeue();
+                }).Start();
+
+                playedFishingGameQueue.Enqueue(true);
+                new Thread(() =>
+                {
+                    Thread.Sleep(minigameCooldownAfterStartedFishing);
+                    playedFishingGameQueue.Dequeue();
+                }).Start();
 
                 while (udpPayloadDataQueue.Count > 0)
                 {
@@ -493,21 +518,17 @@ namespace WinFormsApp1
                                     {
                                         udpPayloadDataQueue.Dequeue();
                                     }
-                                    if (putFishingRodAwayValues.Contains(udpPayloadDataQueue.Peek().Count))
+                                    if (lastAction == "Mini-game")
                                     {
-                                        count = 0;
-                                        if (startedFishAgainQueue.Count == 0)
+                                        if (putFishingRodAwayValues.Contains(udpPayloadDataQueue.Peek().Count))
                                         {
-                                            if (playedFishingGameQueue.Count == 0)
+                                            count = 0;
+                                            if (startedFishAgainQueue.Count == 0)
                                             {
                                                 appendText("Fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                                 appendText2("Fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                                startedFishAgainQueue.Enqueue(true);
-                                                new Thread(() =>
-                                                {
-                                                    Thread.Sleep(startedFishAgainMacroDuration);
-                                                    startedFishAgainQueue.Dequeue();
-                                                }).Start();
+
+                                                lastAction = "Fish";
 
                                                 idleQueue.Enqueue(true);
                                                 new Thread(() =>
@@ -521,7 +542,24 @@ namespace WinFormsApp1
                                                 ProcessStartInfo processStartInfo = new ProcessStartInfo(fishArgs);
                                                 processStartInfo.UseShellExecute = true;
                                                 processStartInfo.Verb = "runas";
-                                                Process.Start(processStartInfo);
+                                                process = Process.Start(processStartInfo);
+                                                process.WaitForExit();
+                                                process = null;
+                                                appendText("Process finished: ThrowFishingLine.exe...");
+
+                                                startedFishAgainQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(startedFishAgainMacroDuration);
+                                                    startedFishAgainQueue.Dequeue();
+                                                }).Start();
+
+                                                playedFishingGameQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(minigameCooldownAfterStartedFishing);
+                                                    playedFishingGameQueue.Dequeue();
+                                                }).Start();
 
                                                 if (udpPayloadDataQueue.Count > 0)
                                                 {
@@ -530,8 +568,8 @@ namespace WinFormsApp1
                                             }
                                             else
                                             {
-                                                appendText("I don't want to interrupt the mini-game...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                                appendText2("I don't want to interrupt the mini-game...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                                appendText("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                                appendText2("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                                 if (udpPayloadDataQueue.Count > 0)
                                                 {
                                                     udpPayloadDataQueue.Dequeue();
@@ -540,30 +578,20 @@ namespace WinFormsApp1
                                         }
                                         else
                                         {
-                                            appendText("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                            appendText2("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                            if (udpPayloadDataQueue.Count > 0)
-                                            {
-                                                udpPayloadDataQueue.Dequeue();
-                                            }
+                                            appendText("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                            appendText2("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                         }
                                     }
-                                    else if (fishHookedValues.Contains(udpPayloadDataQueue.Peek().Count))
-                                    {
-                                        count = 0;
-                                        if (playedFishingGameQueue.Count == 0)
+                                    else if (lastAction == "Fish") {
+                                        if (fishHookedValues.Contains(udpPayloadDataQueue.Peek().Count))
                                         {
-                                            if (startedFishAgainQueue.Count == 0)
+                                            count = 0;
+                                            if (playedFishingGameQueue.Count == 0)
                                             {
                                                 appendText("Start fishing mini-game...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                                 appendText2("Start fishing mini-game...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
 
-                                                playedFishingGameQueue.Enqueue(true);
-                                                new Thread(() =>
-                                                {
-                                                    Thread.Sleep(PlayedFishingGameMacroDuration);
-                                                    playedFishingGameQueue.Dequeue();
-                                                }).Start();
+                                                lastAction = "Mini-game";
 
                                                 idleQueue.Enqueue(true);
                                                 new Thread(() =>
@@ -575,7 +603,24 @@ namespace WinFormsApp1
                                                 ProcessStartInfo processStartInfo = new ProcessStartInfo(fishArgs2);
                                                 processStartInfo.UseShellExecute = true;
                                                 processStartInfo.Verb = "runas";
-                                                Process.Start(processStartInfo);
+                                                process = Process.Start(processStartInfo);
+                                                process.WaitForExit();
+                                                process = null;
+                                                appendText("Process finished: FishingGame.exe");
+
+                                                playedFishingGameQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(PlayedFishingGameMacroDuration);
+                                                    playedFishingGameQueue.Dequeue();
+                                                }).Start();
+
+                                                startedFishAgainQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(fishAgainAfterMiniGameCooldown);
+                                                    startedFishAgainQueue.Dequeue();
+                                                }).Start();
 
                                                 if (udpPayloadDataQueue.Count > 0)
                                                 {
@@ -584,23 +629,76 @@ namespace WinFormsApp1
                                             }
                                             else
                                             {
+                                                appendText("I'm on cooldown from playing the mini-game again...(" + startedFishAgainQueue.Count.ToString() + ")");
+                                                appendText2("I'm on cooldown from playing the mini-game again...(" + startedFishAgainQueue.Count.ToString() + ")");
+
+                                                if (udpPayloadDataQueue.Count > 0)
+                                                {
+                                                    udpPayloadDataQueue.Dequeue();
+                                                }
+                                            }
+                                        }
+                                        else if (putFishingRodAwayValues.Contains(udpPayloadDataQueue.Peek().Count))
+                                        {
+                                            count = 0;
+                                            if (startedFishAgainQueue.Count == 0)
+                                            {
+                                                appendText("Fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                                appendText2("Fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+
+                                                lastAction = "Fish";
+
+                                                idleQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(idleCooldown);
+                                                    idleQueue.Dequeue();
+                                                }).Start();
+
+                                                //int t = 500;
+                                                //Thread.Sleep(3000 + t * randomNumberGenerator.Next(0, 6));
+                                                ProcessStartInfo processStartInfo = new ProcessStartInfo(fishArgs);
+                                                processStartInfo.UseShellExecute = true;
+                                                processStartInfo.Verb = "runas";
+                                                process = Process.Start(processStartInfo);
+                                                process.WaitForExit();
+                                                process = null;
+                                                appendText("Process finished: ThrowFishingLine.exe...");
+
+                                                startedFishAgainQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(startedFishAgainMacroDuration);
+                                                    startedFishAgainQueue.Dequeue();
+                                                }).Start();
+
+                                                playedFishingGameQueue.Enqueue(true);
+                                                new Thread(() =>
+                                                {
+                                                    Thread.Sleep(minigameCooldownAfterStartedFishing);
+                                                    playedFishingGameQueue.Dequeue();
+                                                }).Start();
+
+                                                if (udpPayloadDataQueue.Count > 0)
+                                                {
+                                                    udpPayloadDataQueue.Dequeue();
+                                                }
+                                            }
+                                            else
+                                            {
+                                                appendText("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                                appendText2("I'm on cooldown from starting fishing again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                                if (udpPayloadDataQueue.Count > 0)
+                                                {
+                                                    udpPayloadDataQueue.Dequeue();
+                                                }
                                             }
                                         }
                                         else
                                         {
-                                            appendText("I'm on cooldown from playing the mini-game again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                            appendText2("I'm on cooldown from playing the mini-game again...(" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-
-                                            if (udpPayloadDataQueue.Count > 0)
-                                            {
-                                                udpPayloadDataQueue.Dequeue();
-                                            }
+                                            appendText("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
+                                            appendText2("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                         }
-                                    }
-                                    else
-                                    {
-                                        appendText("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
-                                        appendText2("No action (" + udpPayloadDataQueue.Peek().Count.ToString() + ")");
                                     }
                                 }
                                 else
@@ -623,7 +721,7 @@ namespace WinFormsApp1
                                         appendText("I've been idle for a while, so I'm going to equip some bait and start fishing again...(no code)");
                                         appendText2("I've been idle for a while, so I'm going to equip some bait and start fishing again...(no code)");
                                         count = 0;
-
+                                        lastAction = "Fish";
                                         ProcessStartInfo processStartInfo = null;
 
                                         if (equippedBaitQueue.Count == 0)
@@ -648,15 +746,11 @@ namespace WinFormsApp1
                                             processStartInfo = new ProcessStartInfo(fishArgs3);
                                             processStartInfo.UseShellExecute = true;
                                             processStartInfo.Verb = "runas";
-                                            Process.Start(processStartInfo);
-                                            Thread.Sleep(10000);
+                                            process = Process.Start(processStartInfo);
+                                            process.WaitForExit();
+                                            appendText("Process finished: EquipBait.exe...");
+                                            //Thread.Sleep(10000);
                                         }
-                                        startedFishAgainQueue.Enqueue(true);
-                                        new Thread(() =>
-                                        {
-                                            Thread.Sleep(startedFishAgainMacroDuration);
-                                            startedFishAgainQueue.Dequeue();
-                                        }).Start();
 
                                         idleQueue.Enqueue(true);
                                         new Thread(() =>
@@ -668,7 +762,24 @@ namespace WinFormsApp1
                                         processStartInfo = new ProcessStartInfo(fishArgs);
                                         processStartInfo.Verb = "runas";
                                         processStartInfo.UseShellExecute = true;
-                                        Process.Start(processStartInfo);
+                                        process = Process.Start(processStartInfo);
+                                        process.WaitForExit();
+                                        appendText("Process Finished: ThrowFishingLine.exe...");
+
+                                        playedFishingGameQueue.Enqueue(true);
+                                        new Thread(() =>
+                                        {
+                                            Thread.Sleep(minigameCooldownAfterStartedFishing);
+                                            playedFishingGameQueue.Dequeue();
+                                        }).Start();
+
+                                        startedFishAgainQueue.Enqueue(true);
+                                        new Thread(() =>
+                                        {
+                                            Thread.Sleep(startedFishAgainMacroDuration);
+                                            startedFishAgainQueue.Dequeue();
+                                        }).Start();
+
                                     }
                                 }
                                 else
@@ -692,7 +803,20 @@ namespace WinFormsApp1
 
         private void button6_Click(object sender, EventArgs e)
         {
+            appendText("Stopping fish bot...");
+            appendText2("Stopping fish bot...");
             fish = false;
+            if (process == null)
+            {
+
+            }
+            else
+            {
+                process.Kill();
+                process.WaitForExit();
+
+            }
+            
             while (queue.Count > 0)
             {
                 queue.Dequeue();
@@ -769,14 +893,8 @@ namespace WinFormsApp1
 
                 string filter = "ip and udp";
                 device.Filter = filter;
-
-                textBox1.AppendText(Environment.NewLine);
-                textBox1.AppendText("Listening on " + device.Name + " " + device.Description);
-                textBox1.AppendText(Environment.NewLine);
-                if (captureFileWriter == null)
-                    captureFileWriter = new CaptureFileWriterDevice(outputFile);
-
-                captureFileWriter.Open(device);
+                
+                appendText("Listening on " + device.Name + " " + device.Description);
                 device.StartCapture();
 
                 button1.Enabled = true;

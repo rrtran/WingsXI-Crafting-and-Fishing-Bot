@@ -3,29 +3,81 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+badFeelingImages := Array()
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-1.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-2.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-3.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-4.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-5.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-6.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-7.png")
+badFeelingImages.Push(".\images\1920_1080-bad-feeling-8.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-1.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-2.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-3.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-4.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-5.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-6.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-7.png")
+badFeelingImages.Push(".\images\1600_900-bad-feeling-8.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-1.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-2.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-3.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-4.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-5.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-6.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-7.png")
+badFeelingImages.Push(".\images\1280_720-bad-feeling-8.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-1.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-2.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-3.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-4.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-5.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-6.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-7.png")
+badFeelingImages.Push(".\images\1366_768-bad-feeling-8.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-1.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-2.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-3.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-4.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-5.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-6.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-7.png")
+badFeelingImages.Push(".\images\1680_1050-bad-feeling-8.png")
 
 if (WinExist("ahk_class FFXiClass")) {
 	if (WinActive("ahk_class FFXiClass") == 0) {
 		WinActivate ; Use the window found by WinExist.
 		WinGetPos, X, Y, width, height, A
 		Sleep 1000
-		ImageSearch, FoundX, FoundY, 0, height * .95, width * .5, height, *30 .\images\bad-feeling-1920_1080.png
-		if (ErrorLevel == 0) {
-			pressEsc()
+		i := 1
+		while (i <= badFeelingImages.Length()) {
+			badFeelingImage := badFeelingImages[i]
+			ImageSearch, FoundX, FoundY, 0, height * .95, width * .5, height, *30 %badFeelingImage%
+			if (ErrorLevel == 0) {
+				pressEsc()
+				return
+			}
+			i++
 		}
-		else {
-			doFishingGame()
-		}
+		doFishingGame()
+		return
 	}
 	else {
+		WinGetPos, X, Y, width, height, A
 		Sleep 1000
-		ImageSearch, FoundX, FoundY, 0, height * .95, width * .5, height, *30 .\images\bad-feeling-1920_1080.png
-		if (ErrorLevel == 0) {
-			pressEsc()
+		i := 1
+		while (i <= badFeelingImages.Length()) {
+			badFeelingImage := badFeelingImages[i]
+			ImageSearch, FoundX, FoundY, 0, height * .95, width * .5, height, *30 %badFeelingImage%
+			if (ErrorLevel == 0) {
+				pressEsc()
+				return
+			}
+			i++
 		}
-		else {
-			doFishingGame()
-		}
+		doFishingGame()
+		return
 	}
 }
 

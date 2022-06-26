@@ -176,16 +176,16 @@ namespace WinFormsApp1
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(56, 194);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(229, 23);
+            this.comboBox1.Size = new System.Drawing.Size(239, 23);
             this.comboBox1.TabIndex = 9;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(291, 194);
+            this.button3.Location = new System.Drawing.Point(301, 194);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 24);
+            this.button3.Size = new System.Drawing.Size(75, 24);
             this.button3.TabIndex = 10;
-            this.button3.Text = "Capture Packets";
+            this.button3.Text = "Assign";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -203,7 +203,8 @@ namespace WinFormsApp1
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Windurst Waters",
-            "Windurst Woods"});
+            "Windurst Woods",
+            "West Ronfaure"});
             this.comboBox2.Location = new System.Drawing.Point(56, 253);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(158, 23);
